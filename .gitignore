@@ -1,0 +1,10 @@
+__pycache__
+*.json
+.env
+venv/
+error_logfile.txt
+/archive/
+.idea
+modules/perfect_pitch/music/tunes
+modules/music_race/puzzle_outputs
+env/
