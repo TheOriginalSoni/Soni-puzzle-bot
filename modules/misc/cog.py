@@ -1,4 +1,4 @@
-Oimport nextcord
+import nextcord
 import os
 from nextcord.ext import commands
 from emoji import UNICODE_EMOJI
