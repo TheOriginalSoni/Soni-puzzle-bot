@@ -27,18 +27,70 @@ class MiscCog(commands.Cog, name="Misc"):
         )
         await ctx.send(embed=embed)
 
-    @commands.command(name="pranks")
+    @command_predicates.is_tester()
+    @commands.command(name="pranks", aliases=["puzzle1"])
     async def pranks(self, ctx):
         """
         Usage : `~pranks`
         """
         logging_utils.log_command("pranks", ctx.guild, ctx.channel, ctx.author)
-        message1 = "<#5324614613526251433146252435161562340000000000000000000000000000000000000000000000000000000000000000000000000000000>"
-        message2 = "<#0001111101101101100000111010000010100000000000000000000000000000000000000000000000000000000000000000000000000000000>"
-        message3 = "<#6832487220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>" 
-        await ctx.send(message=message1)
-        await ctx.send(message=message2)
-        await ctx.send(message=message3)
+        m1 = "<#030042000000100050060004040000005026000000000000000000000000000000000000000000000000000000000000000000000000000000000000>"
+        m2 = "<#001100010100000001001100100000100001000000000000000000000000000000000000000000000000000000000000000000000000000000000000>"
+        m3 = "<#683248722000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>"
+        await ctx.send(m1)
+        await ctx.send(m2)
+        await ctx.send(m3)
+
+    @command_predicates.is_tester()
+    @commands.command(name="potato", aliases=["puzzle2"])
+    async def potato(self, ctx):
+        """
+        Usage : `~potato`
+        """
+        logging_utils.log_command("potato", ctx.guild, ctx.channel, ctx.author)
+        m1 = "https://cdn.discordapp.com/attachments/738306742139748422/955697060697501746/120.png"
+        await ctx.send(m1)
+
+    @command_predicates.is_tester()
+    @commands.command(name="pariah", aliases=["puzzle3"])
+    async def pariah(self, ctx):
+        """
+        Usage : `~pariah`
+        """
+        logging_utils.log_command("pariah", ctx.guild, ctx.channel, ctx.author)
+        loc = "files/sounding.zip"
+        file = nextcord.File(loc)
+        await ctx.send(file=file)
+
+    @command_predicates.is_tester()
+    @commands.command(name="poetry", aliases=["puzzle4"])
+    async def poetry(self, ctx):
+        """
+        Usage : `~poetry`
+        """
+        logging_utils.log_command("poetry", ctx.guild, ctx.channel, ctx.author)
+        m1 = "__On__e __star__ in __every__ __same__ one __?__ Ba__ttle__ __who__ ?Add __sect__ors __upon__ __it.__"
+        await ctx.send(m1)
+
+    @command_predicates.is_tester()
+    @commands.command(name="polska", aliases=["puzzle5"])
+    async def polska(self, ctx):
+        """
+        Usage : `~polska`
+        """
+        logging_utils.log_command("polska", ctx.guild, ctx.channel, ctx.author)
+        m1 = "https://cdn.discordapp.com/attachments/738306742139748422/955691396109565952/irrational.png"
+        await ctx.send(m1)
+
+    @command_predicates.is_tester()
+    @commands.command(name="pirate", aliases=["puzzle6"])
+    async def pirate(self, ctx):
+        """
+        Usage : `~pirate`
+        """
+        logging_utils.log_command("pirate", ctx.guild, ctx.channel, ctx.author)
+        m1 = "**Including itself, what is the quickest way out of this hellscape?**\n\n Note - This is the last puzzle and goes into submission box. \n\n Also while we're here, what's your favourite thing about Arithmancy?"
+        await ctx.send(m1)
 
     ###################
     # BOTSAY COMMANDS #
