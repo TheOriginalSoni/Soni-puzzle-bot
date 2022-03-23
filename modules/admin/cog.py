@@ -53,6 +53,7 @@ class AdminCog(commands.Cog, name="Admin"):
             await ctx.send(embed=embed)
             return
 
+        role_to_assign = None
         # Get role. Allow people to use the command by pinging the role, or just naming it
         if isinstance(role_or_rolename, str):
             # Search over all roles and see if we get a match.
