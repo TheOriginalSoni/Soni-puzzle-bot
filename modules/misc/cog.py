@@ -199,5 +199,43 @@ class MiscCog(commands.Cog, name="Misc"):
         await ctx.send(embed=sent_embed)
 
 
+    @commands.command(name="getsource")
+    async def getsource(self, ctx):
+        """Gives the discord formatted source code for a specific message in the channel.
+        This command must be a reply
+
+        Usage: `~getsource` (as a reply to the message)
+        """
+        logging_utils.log_command("getsource", ctx.guild, ctx.channel, ctx.author)
+        embed = discord_utils.create_embed()
+
+        # If not direct reply to another message
+        if not ctx.message.reference:
+            embed.add_field(
+                name=f"{constants.FAILED}!",
+                value=f"The command `~getsource` can only be used as a reply to another message.",
+                inline=False,
+            )
+            await ctx.send(embed=embed)
+            return
+
+        orig_msg = ctx.message.reference.resolved
+        if orig_msg.content is None or len(orig_msg.content) == 0:
+            embed.add_field(
+                name=f"{constants.FAILED}!",
+                value=f"The replied message has no content to `~getsource` from. Is it a bot or system message?",
+                inline=False,
+            )
+            await ctx.send(embed=embed)
+            return
+
+        msg = "```" + orig_msg.content + "```"
+        embed.add_field(
+            name=f"{constants.SUCCESS}!",
+            value=f"{msg}",
+            inline=False,
+        )
+        await ctx.send(embed=embed)
+
 def setup(bot):
     bot.add_cog(MiscCog(bot))
