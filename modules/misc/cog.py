@@ -84,6 +84,7 @@ class MiscCog(commands.Cog, name="Misc"):
     @commands.command(name="part1sub1", aliases=["puzzle1sub1"])
     async def part1sub1(self, ctx):
         logging_utils.log_command("part1sub1", ctx.guild, ctx.channel, ctx.author)
+        m0 = "There are 3 messages here. You can trigger them separately also, by typing ?part1sub1 ?part1sub2 ?part1sub3"
         m1 = "<#030042000000100050060004040000005026000000000000000000000000000000000000000000000000000000000000000000000000000000000000>"
         m2 = "<#001100010100000001001100100000100001000000000000000000000000000000000000000000000000000000000000000000000000000000000000>"
         m3 = "<#683248722000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>"
@@ -312,7 +313,7 @@ class MiscCog(commands.Cog, name="Misc"):
         await ctx.send(embed=sent_embed)
 
 
-    @commands.command(name="getsource")
+    @commands.command(name="getsource", aliases=["tts"])
     async def getsource(self, ctx):
         """Gives the discord formatted source code for a specific message in the channel.
         This command must be a reply
@@ -326,7 +327,7 @@ class MiscCog(commands.Cog, name="Misc"):
         if not ctx.message.reference:
             embed.add_field(
                 name=f"{constants.FAILED}!",
-                value=f"The command `~getsource` can only be used as a reply to another message.",
+                value=f"The command `?tts` can only be used as a reply to another message.",
                 inline=False,
             )
             await ctx.send(embed=embed)
@@ -336,7 +337,7 @@ class MiscCog(commands.Cog, name="Misc"):
         if orig_msg.content is None or len(orig_msg.content) == 0:
             embed.add_field(
                 name=f"{constants.FAILED}!",
-                value=f"The replied message has no content to `~getsource` from. Is it a bot or system message?",
+                value=f"The replied message has no content to `?tts` from. Is it a bot or system message?",
                 inline=False,
             )
             await ctx.send(embed=embed)
