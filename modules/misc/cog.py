@@ -27,6 +27,21 @@ class MiscCog(commands.Cog, name="Misc"):
         )
         await ctx.send(embed=embed)
 
+
+    @commands.command(name="answer")
+    async def answer(self, ctx):
+        """
+        Usage : `~answer`
+        """
+        logging_utils.log_command("answer", ctx.guild, ctx.channel, ctx.author)
+        embed = discord_utils.create_embed()
+        embed.add_field(
+            name=f"Oops!!",
+            value=f"You are meant to type the actual answer. For example if the answer is cursedchild, then type ?cursedchild to check! No spaces!",
+            inline=False,
+        )
+        await ctx.send(embed=embed)
+
     @command_predicates.is_tester()
     @commands.command(name="part0", aliases=["puzzle0"])
     async def part0(self, ctx):
