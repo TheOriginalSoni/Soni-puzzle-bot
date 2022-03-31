@@ -70,14 +70,14 @@ class MiscCog(commands.Cog, name="Misc"):
     @commands.command(name="part1", aliases=["puzzle1"])
     async def pranks(self, ctx):
         logging_utils.log_command("puzzle1", ctx.guild, ctx.channel, ctx.author)
-        m0 = "There are 3 messages here. You can trigger them separately also, by typing ?part1sub1 ?part1sub2 ?part1sub3"
+        m0 = "There are 3 messages here. You can trigger them separately, by typing ?part1sub1 ?part1sub2 ?part1sub3"
         m1 = "<#030042000000100050060004040000005026000000000000000000000000000000000000000000000000000000000000000000000000000000000000>"
         m2 = "<#001100010100000001001100100000100001000000000000000000000000000000000000000000000000000000000000000000000000000000000000>"
         m3 = "<#683248722000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>"
         await ctx.send(m0)
-        await ctx.send(m1)
-        await ctx.send(m2)
-        await ctx.send(m3)
+        #await ctx.send(m1)
+        #await ctx.send(m2)
+        #await ctx.send(m3)
 
 
     @command_predicates.is_tester()
