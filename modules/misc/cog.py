@@ -13,7 +13,7 @@ class MiscCog(commands.Cog, name="Misc"):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="hint", aliases = ["help"])
+    @commands.command(name="hint")
     async def hint(self, ctx):
         """
         Usage : `~hint`
