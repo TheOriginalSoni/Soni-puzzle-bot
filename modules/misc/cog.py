@@ -1,7 +1,7 @@
 import nextcord
 import os
 from nextcord.ext import commands
-from emoji import UNICODE_EMOJI
+import emoji
 from typing import Union
 import constants
 from utils import discord_utils, logging_utils, command_predicates

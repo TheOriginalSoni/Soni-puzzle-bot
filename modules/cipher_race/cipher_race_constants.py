@@ -11,7 +11,7 @@ ID = "ID"
 URL = "URL"
 CODE = "cipher_race"
 ANSWER = "Answer"
-COLUMNS = [ID, URL, CODE, ANSWER]
+COLUMNS = [ID, URL, ANSWER]
 # Answer responses
 ANSWERS = "answers"
 LEVEL = "level"
@@ -28,7 +28,7 @@ BRAILLE = "braille"
 CIPHERS = [PIGPEN, SEMAPHORE, MORSE, BRAILLE]
 # Wordlists
 HP = "hp"
-HP_SHEET_TAB_NAME = "HP"
+HP_SHEET_TAB_NAME = "cipher_sheet"
 COMMON = "common"
 COMMON_SHEET_TAB_NAME = "Common"
 CHALLENGE = "challenge"

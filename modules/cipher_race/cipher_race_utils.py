@@ -30,9 +30,9 @@ def get_opening_statement(sheet_used) -> nextcord.Embed:
     embed = discord_utils.create_embed()
     embed.add_field(
         name=f"Welcome!",
-        value=f"You have started a new race against the {sheet_used.capitalize()} wordlist! "
-        f"Level 1 will start in about {cipher_race_constants.BREAK_TIME} seconds from this message! "
-        f"You will have {cipher_race_constants.TIME_LIMIT} seconds to complete levels 1-5. "
+        value=f"You have started a new race against the {sheet_used.capitalize()} wordlist!\n"
+        f"Level 1 will start in about {cipher_race_constants.BREAK_TIME} seconds from this message! \n\n"
+        f"You will have {cipher_race_constants.TIME_LIMIT} seconds to complete levels 1-5. \n"
         f"After every {cipher_race_constants.NUM_LEVELS}th level, you will get {cipher_race_constants.BONUS_TIME} "
         f"additional seconds (i.e you get {cipher_race_constants.TIME_LIMIT + cipher_race_constants.BONUS_TIME} "
         f"seconds to complete levels 6-10). Good luck and have fun!",

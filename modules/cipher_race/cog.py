@@ -7,7 +7,7 @@ from utils import google_utils, discord_utils, logging_utils, command_predicates
 from modules.cipher_race import cipher_race_constants, cipher_race_utils
 import constants
 from aio_timers import Timer
-from emoji import EMOJI_ALIAS_UNICODE_ENGLISH as EMOJIS
+import emoji
 
 load_dotenv()
 
@@ -39,22 +39,25 @@ class CipherRaceCog(commands.Cog, name="Cipher Race"):
         self.spreadsheet = self.client.open_by_key(
             os.getenv("CIPHER_RACE_SHEET_KEY").replace("'", "")
         )
+        
         self.sheet_map = {
             cipher_race_constants.HP: google_utils.get_dataframe_from_gsheet(
                 self.spreadsheet.worksheet(cipher_race_constants.HP_SHEET_TAB_NAME),
                 cipher_race_constants.COLUMNS,
-            ),
-            cipher_race_constants.COMMON: google_utils.get_dataframe_from_gsheet(
-                self.spreadsheet.worksheet(cipher_race_constants.COMMON_SHEET_TAB_NAME),
-                cipher_race_constants.COLUMNS,
-            ),
-            cipher_race_constants.CHALLENGE: google_utils.get_dataframe_from_gsheet(
-                self.spreadsheet.worksheet(
-                    cipher_race_constants.CHALLENGE_SHEET_TAB_NAME
-                ),
-                cipher_race_constants.COLUMNS,
-            ),
+            )
         }
+        '''
+                cipher_race_constants.COMMON: google_utils.get_dataframe_from_gsheet(
+                    self.spreadsheet.worksheet(cipher_race_constants.COMMON_SHEET_TAB_NAME),
+                    cipher_race_constants.COLUMNS,
+                ),
+                cipher_race_constants.CHALLENGE: google_utils.get_dataframe_from_gsheet(
+                    self.spreadsheet.worksheet(
+                        cipher_race_constants.CHALLENGE_SHEET_TAB_NAME
+                    ),
+                    cipher_race_constants.COLUMNS,
+                ),
+        '''        
 
     # Reload the google sheet every hour
     @commands.Cog.listener()
@@ -234,11 +237,9 @@ class CipherRaceCog(commands.Cog, name="Cipher Race"):
         )
 
         if result == cipher_race_constants.CORRECT:
-            await ctx.message.add_reaction(EMOJIS[cipher_race_constants.CORRECT_EMOJI])
+            await ctx.message.add_reaction(emoji.emojize(":check_mark_button:"))
         else:
-            await ctx.message.add_reaction(
-                EMOJIS[cipher_race_constants.INCORRECT_EMOJI]
-            )
+            await ctx.message.add_reaction(emoji.emojize(":x:"))
 
         # We pop off the correct answers as they are given, so at some point current_answers will be an empty list.
         # If there are more answers left, don't do any of that level complete nonsense.
@@ -293,8 +294,14 @@ class CipherRaceCog(commands.Cog, name="Cipher Race"):
             "reloadciphersheet", ctx.guild, ctx.channel, ctx.author
         )
         embed = discord_utils.create_embed()
-
         self.sheet_map = {
+            cipher_race_constants.HP: google_utils.get_dataframe_from_gsheet(
+                self.spreadsheet.worksheet(cipher_race_constants.HP_SHEET_TAB_NAME),
+                cipher_race_constants.COLUMNS,
+            )
+        }
+
+        '''        self.sheet_map = {
             cipher_race_constants.HP: google_utils.get_dataframe_from_gsheet(
                 self.spreadsheet.worksheet(cipher_race_constants.HP_SHEET_TAB_NAME),
                 cipher_race_constants.COLUMNS,
@@ -309,7 +316,7 @@ class CipherRaceCog(commands.Cog, name="Cipher Race"):
                 ),
                 cipher_race_constants.COLUMNS,
             ),
-        }
+        }'''
         print(f"Reload used. Reloaded {cipher_race_constants.CODE} sheet")
         embed.add_field(
             name="Sheet Reloaded",
@@ -348,6 +355,13 @@ class CipherRaceCog(commands.Cog, name="Cipher Race"):
             cipher_race_constants.HP: google_utils.get_dataframe_from_gsheet(
                 self.spreadsheet.worksheet(cipher_race_constants.HP_SHEET_TAB_NAME),
                 cipher_race_constants.COLUMNS,
+            )
+        }
+        '''
+        self.sheet_map = {
+            cipher_race_constants.HP: google_utils.get_dataframe_from_gsheet(
+                self.spreadsheet.worksheet(cipher_race_constants.HP_SHEET_TAB_NAME),
+                cipher_race_constants.COLUMNS,
             ),
             cipher_race_constants.COMMON: google_utils.get_dataframe_from_gsheet(
                 self.spreadsheet.worksheet(cipher_race_constants.COMMON_SHEET_TAB_NAME),
@@ -360,6 +374,7 @@ class CipherRaceCog(commands.Cog, name="Cipher Race"):
                 cipher_race_constants.COLUMNS,
             ),
         }
+        '''
         print(f"Reloaded {cipher_race_constants.CODE} sheet on schedule")
 
     async def start_new_level(self, ctx, channel, embeds):
